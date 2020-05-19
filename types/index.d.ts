@@ -960,9 +960,22 @@ export const ChannelSearch: React.FC<any>;
 export const LoadMorePaginator: React.FC<LoadMorePaginatorProps>;
 export const InfiniteScrollPaginator: React.FC<InfiniteScrollPaginatorProps>;
 export const LoadingIndicator: React.FC<LoadingIndicatorProps>;
+export interface MessageCommerceProps extends MessageUIComponentProps {
+  isMyMessage(message: Client.MessageResponse): boolean;
+  t: i18next.TFunction;
+  tDateTimeParser: (
+    datetime: string | number,
+  ) => { format: (f: string) => string };
+}
+
+export type MessageCommerceState = {
+  isFocused: boolean;
+  showDetailedReactions: boolean;
+};
+
 export class MessageCommerce extends React.PureComponent<
-  MessageUIComponentProps,
-  any
+  MessageCommerceProps,
+  MessageCommerceState
 > {}
 export class MessageLivestream extends React.PureComponent<
   MessageUIComponentProps,
