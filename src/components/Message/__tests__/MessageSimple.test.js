@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  cleanup,
-  render,
-  fireEvent,
-  queryByTestId,
-  getByText,
-} from '@testing-library/react';
+import { cleanup, render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Message from '../Message';
 import MessageSimple from '../MessageSimple';
@@ -443,20 +437,6 @@ describe('<MessageSimple />', () => {
     const message = generateAliceMessage({ text });
     const { getByText } = await renderMessageSimple(message);
     expect(getByText(text)).toBeInTheDocument();
-  });
-
-  it('should show reaction list if message has reactions and detailed reactions are not displayed', async () => {
-    const bobReaction = {
-      type: 'love',
-      user_id: bob.user_id,
-      user: bob,
-      created_at: new Date('2019-12-17T03:24:00'),
-    };
-    const message = generateAliceMessage({
-      latest_reactions: [bobReaction],
-    });
-    const { getByTestId } = await renderMessageSimple(message);
-    expect(getByTestId('reaction-list')).toBeInTheDocument();
   });
 
   it('should show reaction list if message has reactions and detailed reactions are not displayed', async () => {
